@@ -9,51 +9,63 @@
 # =============================================================================
 
 team:
-  name: ""                             # REQUIRED — e.g., "Orion Squad"
-  track: ""                            # REQUIRED — one of: AI | DevOps | Sustainability | Open
+  name: "Vertex-AI"                             # REQUIRED — e.g., "Orion Squad"
+  track: "AI"                            # REQUIRED — one of: AI | DevOps | Sustainability | Open
   lead:
-    name: ""                           # REQUIRED — e.g., "Alice Chen"
-    email: ""                          # REQUIRED — e.g., "alice.chen@ibm.com"
+    name: "Vaidehi Patel"                           # REQUIRED — e.g., "Alice Chen"
+    email: "25cs081@charusat.edu.in"                          # REQUIRED — e.g., "alice.chen@ibm.com"
   members:
-    - name: ""                         # REQUIRED — Team member 1
-      email: ""
-    - name: ""                         # Add more members by copying the two lines above
-      email: ""
-    - name: ""
-      email: ""
+    - name: "Aadya Raval"                         # REQUIRED — Team member 1
+      email: "25cs089@charusat.edu.in"
+    - name: "Devanshi Patel"                         # Add more members by copying the two lines above
+      email: "25cs059@charusat.edu.in"
+    - name: "Durva Naik"
+      email: "26it040@edu.charusat.org"
 
 submission:
-  title: ""                            # REQUIRED — Project display name, e.g., "SmartOps Dashboard"
+  title: "GridGaurdAI"                            # REQUIRED — Project display name, e.g., "SmartOps Dashboard"
 
   problem_statement: >                 # REQUIRED — 1-3 sentences. What problem? Who has it?
-    Replace this text with a concise description of the real-world problem
-    your project addresses and who experiences it.
+    Power transformer and substation failures cause blackouts costing utilities
+    $1M+/hour and affecting millions of people. Utilities still rely on calendar-based
+    maintenance even though sensor data already shows failure signatures weeks in
+    advance, because sensor telemetry, weather forecasts and crew availability are
+    never combined in time for operators to act.
 
   solution_summary: >                  # REQUIRED — 1-3 sentences. What did you build?
-    Replace this text with a clear description of your solution
-    and how it addresses the problem above.
+      GridGuard AI is an explainable power-grid risk intelligence platform that
+  analyzes grid asset data to score equipment-condition risk and outage risk,
+  prioritize critical assets and zones, estimate potential impact, and recommend
+  preventive operational actions.
 
   key_features:                        # REQUIRED — List 3 to 5 specific features you implemented
-    - ""                               # e.g., "Real-time pipeline anomaly detection using watsonx.ai"
-    - ""
-    - ""
-    - ""                               # optional 4th
-    - ""                               # optional 5th
+  - "Explainable equipment-condition risk scoring for grid assets"
+  - "Outage risk scoring using equipment condition, load, weather, outage history, and asset criticality"
+  - "Risk-based prioritization of vulnerable assets and grid zones"
+  - "Asset impact analysis with preventive maintenance recommendations"
+  - "Rule-based GridGuard Operations Copilot using live backend risk data"                         # optional 5th
 
   tech_stack:
-    languages: []                      # REQUIRED — e.g., ["Python", "TypeScript"]
-    frameworks: []                     # e.g., ["FastAPI", "React"]
-    ibm_technologies: []               # e.g., ["watsonx.ai", "IBM Bob", "IBM Cloud Functions"]
-    databases: []                      # e.g., ["PostgreSQL", "Redis"]
-    other: []                          # e.g., ["Docker", "GitHub Actions", "Slack API"]
+  languages: ["Python", "JavaScript", "HTML", "CSS"]
+  frameworks: ["FastAPI"]
+  ibm_technologies: ["IBM Bob"]
+  databases: []
+  other: ["Pandas", "GitHub Actions", "Render"]# e.g., ["Docker", "GitHub Actions", "Slack API"]
 
   what_we_are_most_proud_of: >         # Optional but recommended — guides judges to your best work
-    Replace with what aspect of the submission you consider strongest
-    and want judges to pay special attention to.
+  We are most proud of GridGuard's ability to distinguish between equipment
+  condition risk and broader outage risk. This allows operators to go beyond
+  simply identifying assets that may fail and prioritize the failures that
+  could have the greatest operational impact, while also receiving impact
+  estimates and preventive action recommendations.
 
   known_limitations: >                 # Optional but recommended — be honest about gaps
-    Replace with any known limitations, incomplete features,
-    or shortcuts taken due to time constraints.
+  The current MVP uses synthetic demonstration data and deterministic weighted
+  risk-scoring rules rather than a trained and validated machine-learning model.
+  Impact figures are synthetic estimates for demonstration purposes. The
+  Operations Copilot is currently rule-based and is designed for future IBM AI
+  integration. The MVP does not yet use a production database or real-time
+  utility/SCADA data feeds.
 
 # =============================================================================
 # ARTIFACT LOCATIONS
