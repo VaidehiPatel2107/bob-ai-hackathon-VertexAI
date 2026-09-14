@@ -94,3 +94,7 @@ logs/
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+# GridGuard dataset - required for the application
+!src/backend/data/
+!src/backend/data/equipment.csv
