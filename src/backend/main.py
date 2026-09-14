@@ -25,7 +25,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-import risk_engine as re
+from . import risk_engine as re
 
 # ---------------------------------------------------------------------------
 # App setup
