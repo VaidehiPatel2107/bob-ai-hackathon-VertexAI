@@ -72,6 +72,7 @@ Power transformers and substation equipment can develop failure conditions that 
 ## 📁 Repository Structure
 
 ```text
+
 ├── src/                  # Application source code
 │   └── backend/          # FastAPI backend and dashboard
 │       ├── data/         # Equipment dataset
@@ -86,6 +87,7 @@ Power transformers and substation equipment can develop failure conditions that 
 ├── demo/                 # Demo artifacts
 ├── presentation/         # Hackathon presentation
 └── submission.yaml       # Submission metadata
+`
 ```
 
 ## ⚡ How to Run
