@@ -79,7 +79,7 @@ async function loadSummary() {
   document.getElementById('card-crit-eq').textContent  = s.critical_equipment;
   document.getElementById('card-high-eq').textContent  = s.high_equipment;
   document.getElementById('card-crit-out').textContent = s.critical_outage;
-  document.getElementById('card-avg').textContent      = s.avg_equipment_risk_score.toFixed(1);
+  document.getElementById('card-medium-eq').textContent = s.medium_equipment;
 
   const statusEl = document.getElementById('grid-status');
   if (s.critical_equipment >= 5) {
@@ -128,6 +128,9 @@ async function loadTopAssets() {
   top.forEach(a => {
     const tr = document.createElement('tr');
     tr.dataset.id = a.asset_id;
+    tr.tabIndex = 0;
+    tr.setAttribute('role', 'button');
+    tr.setAttribute('aria-label', `Open details for ${a.name}`);
     tr.innerHTML = `
       <td>
         <div class="asset-name">${a.name}</div>
@@ -138,6 +141,12 @@ async function loadTopAssets() {
       <td>${scoreCellHtml(a.outage_risk_score, a.outage_risk_label)}</td>
     `;
     tr.addEventListener('click', () => selectAsset(a.asset_id));
+    tr.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectAsset(a.asset_id);
+      }
+    });
     tbody.appendChild(tr);
   });
 }
@@ -173,8 +182,10 @@ async function selectAsset(assetId) {
 
   try {
     const a = await fetchJson(`/api/equipment/${encodeURIComponent(assetId)}`);
+    if (selectedId !== assetId) return;
     renderDetail(a);
   } catch (e) {
+    if (selectedId !== assetId) return;
     document.getElementById('detail-body').innerHTML =
       `<div class="detail-placeholder" style="color:var(--critical)">Failed to load asset: ${e.message}</div>`;
   }
@@ -301,6 +312,7 @@ function initCopilot() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: q }),
       });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
       const data = await res.json();
       thinking.remove();
       appendMsg('bot', data.answer, msgs);
