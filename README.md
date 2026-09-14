@@ -72,22 +72,49 @@ Power transformers and substation equipment can develop failure conditions that 
 ## 📁 Repository Structure
 
 ```text
+## 📁 Repository Structure
 
-├── src/                  # Application source code
-│   └── backend/          # FastAPI backend and dashboard
-│       ├── data/         # Equipment dataset
-│       ├── static/       # Frontend files
+```text
+bob-ai-hackathon-VertexAI/
+│
+├── .bob/
+├── .github/
+│   └── workflows/
+│       └── validate-submission.yml
+│
+├── demo/
+│   ├── screenshots/
+│   ├── demo-video-link.txt
+│   └── live-demo-url.txt
+│
+├── docs/
+│   ├── problem-statement.md
+│   ├── solution-overview.md
+│   ├── architecture.md
+│   └── setup-guide.md
+│
+├── presentation/
+│   └── slides.pdf
+│
+├── src/
+│   └── backend/
+│       ├── data/
+│       │   └── equipment.csv
+│       ├── static/
 │       │   ├── index.html
-│       │   ├── app.js
-│       │   └── style.css
-│       ├── main.py       # FastAPI application
-│       ├── risk_engine.py # Risk scoring and recommendations
-│       └── requirements.txt # Python dependencies
-├── docs/                 # Project documentation
-├── demo/                 # Demo artifacts
-├── presentation/         # Hackathon presentation
-└── submission.yaml       # Submission metadata
-`
+│       │   ├── style.css
+│       │   └── app.js
+│       ├── main.py
+│       ├── risk_engine.py
+│       └── requirements.txt
+│
+├── .gitignore
+├── AGENTS.md
+├── CONTRIBUTING.md
+├── gridguard-mvp-plan.md
+├── README.md
+└── submission.yaml
+```
 ```
 
 ## ⚡ How to Run
