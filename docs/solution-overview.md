@@ -54,10 +54,9 @@ graph TD
     RECOMMEND --> API
     COPILOT --> API
     API -->|JSON Response| DASH
+```
 
-    ```text
-
-## Key Design Decisions
+### Key Design Decisions
 
 | **Decision** | **Rationale** |
 |---|---|
