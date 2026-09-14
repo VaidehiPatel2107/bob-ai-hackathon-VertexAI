@@ -1,4 +1,4 @@
-```yaml
+
 team:
 
   name: "Vertex-AI"                             # REQUIRED — e.g., "Orion Squad"
@@ -71,4 +71,4 @@ artifacts:
   live_demo: "demo/live-demo-url.txt"
   screenshots: "demo/screenshots/"
   presentation: "presentation/"
-```
+
