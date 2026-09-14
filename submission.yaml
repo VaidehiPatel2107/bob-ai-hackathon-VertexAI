@@ -1,71 +1,67 @@
 ```yaml
 team:
-  name: "VertexAI"
-  track: "AI"
+
+  name: "Vertex-AI"                             # REQUIRED — e.g., "Orion Squad"
+  track: "AI"                            # REQUIRED — one of: AI | DevOps | Sustainability | Open
   lead:
-    name: "Vaidehi Patel"
-    email: "25cs081@charusat.edu.in"
+    name: "Vaidehi Patel"                           # REQUIRED — e.g., "Alice Chen"
+    email: "25cs081@charusat.edu.in"                          # REQUIRED — e.g., "alice.chen@ibm.com"
   members:
-    - name: "Vaidehi Patel"
-      email: "25cs081@charusat.edu.in"
-    - name: "Devanshi Patel"
-      email: "25cs059@charusat.edu.in"
-    - name: "Aadya Raval"
+    - name: "Aadya Raval"                         # REQUIRED — Team member 1
       email: "25cs089@charusat.edu.in"
+    - name: "Devanshi Patel"                         # Add more members by copying the two lines above
+      email: "25cs059@charusat.edu.in"
+
     - name: "Durva Naik"
       email: "26it040@edu.charusat.org"
 
 submission:
-  title: "GridGuard AI"
 
-  problem_statement: >
-    Power-grid operators need to identify vulnerable equipment before failures
-    become outages, but large grid datasets make it difficult to prioritize
-    which assets require attention first. GridGuard AI helps operators identify
-    high-risk equipment and understand the potential outage impact of failures.
 
-  solution_summary: >
-    GridGuard AI is an interactive predictive risk dashboard that analyzes grid
-    asset data, scores equipment failure and outage risk, prioritizes vulnerable
-    assets, explains potential impact, and provides preventive recommendations.
-    It also includes a rule-based Operations Copilot MVP for natural-language
-    operational queries.
+  title: "GridGaurdAI"                            # REQUIRED — Project display name, e.g., "SmartOps Dashboard"
 
-  key_features:
-    - "Equipment failure risk scoring and severity classification"
-    - "Outage risk scoring based on failure likelihood and potential impact"
-    - "Top vulnerable asset and zone-level risk prioritization"
-    - "Asset impact analysis with preventive recommendations"
-    - "Rule-based Operations Copilot MVP for operational queries"
+  problem_statement: >                 # REQUIRED — 1-3 sentences. What problem? Who has it?
+    Power transformer and substation failures cause blackouts costing utilities
+    $1M+/hour and affecting millions of people. Utilities still rely on calendar-based
+    maintenance even though sensor data already shows failure signatures weeks in
+    advance, because sensor telemetry, weather forecasts and crew availability are
+    never combined in time for operators to act.
+
+  solution_summary: >                  # REQUIRED — 1-3 sentences. What did you build?
+      GridGuard AI is an explainable power-grid risk intelligence platform that
+  analyzes grid asset data to score equipment-condition risk and outage risk,
+  prioritize critical assets and zones, estimate potential impact, and recommend
+  preventive operational actions.
+
+  key_features:                        # REQUIRED — List 3 to 5 specific features you implemented
+  - "Explainable equipment-condition risk scoring for grid assets"
+  - "Outage risk scoring using equipment condition, load, weather, outage history, and asset criticality"
+  - "Risk-based prioritization of vulnerable assets and grid zones"
+  - "Asset impact analysis with preventive maintenance recommendations"
+  - "Rule-based GridGuard Operations Copilot using live backend risk data"                         # optional 5th
 
   tech_stack:
-    languages:
-      - "Python"
-      - "JavaScript"
-      - "HTML"
-      - "CSS"
-    frameworks:
-      - "FastAPI"
-      - "Pandas"
-    ibm_technologies:
-      - "IBM Bob"
-    databases: []
-    other:
-      - "GitHub Actions"
+  languages: ["Python", "JavaScript", "HTML", "CSS"]
+  frameworks: ["FastAPI"]
+  ibm_technologies: ["IBM Bob"]
+  databases: []
+  other: ["Pandas", "GitHub Actions", "Render"]# e.g., ["Docker", "GitHub Actions", "Slack API"]
 
-  what_we_are_most_proud_of: >
-    We are most proud of turning raw grid asset data into an actionable
-    prioritization workflow rather than only displaying risk scores. GridGuard
-    AI helps distinguish between the likelihood that equipment may fail and the
-    potential consequence of that failure, allowing operators to focus on the
-    assets where preventive action matters most.
+  what_we_are_most_proud_of: >         # Optional but recommended — guides judges to your best work
+  We are most proud of GridGuard's ability to distinguish between equipment
+  condition risk and broader outage risk. This allows operators to go beyond
+  simply identifying assets that may fail and prioritize the failures that
+  could have the greatest operational impact, while also receiving impact
+  estimates and preventive action recommendations.
 
-  known_limitations: >
-    The current demonstration uses synthetic grid data and a rule-based
-    Operations Copilot MVP. The Copilot is designed as an extensible foundation
-    for future IBM AI integration, but the current runtime does not claim to use
-    IBM Bob as its inference engine. The project is a hackathon MVP and does not
-    yet connect to live utility infrastructure or real-time grid telemetry.
+  known_limitations: >                 # Optional but recommended — be honest about gaps
+  The current MVP uses synthetic demonstration data and deterministic weighted
+  risk-scoring rules rather than a trained and validated machine-learning model.
+  Impact figures are synthetic estimates for demonstration purposes. The
+  Operations Copilot is currently rule-based and is designed for future IBM AI
+  integration. The MVP does not yet use a production database or real-time
+  utility/SCADA data feeds.
+
 
 artifacts:
   source_code: "src/"
