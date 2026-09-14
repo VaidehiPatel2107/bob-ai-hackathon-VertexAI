@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GridGuard AI — Grid Intelligence Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div id="loading-overlay" class="loading-overlay">
+  <div class="spinner"></div>
+  <span style="color:var(--muted);font-size:13px">Loading GridGuard AI…</span>
+</div>
+
+<!-- ── Header ─────────────────────────────────────────────────────────── -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <h1>GridGuard AI</h1>
+          <p>Power Grid Intelligence &amp; Risk Prediction Platform</p>
+        </div>
+      </div>
+      <span id="grid-status">Loading…</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── Main content ───────────────────────────────────────────────────── -->
+<main>
+  <div class="container">
+
+    <!-- Error banner (hidden until needed) -->
+    <div id="error-banner" class="error-banner" style="display:none"></div>
+
+    <!-- ── Summary cards ──────────────────────────────────────────────── -->
+    <p class="section-title">Grid Overview</p>
+    <div class="cards-grid">
+      <div class="card card-ok">
+        <div class="card-label">Total Assets</div>
+        <div class="card-value" id="card-total">—</div>
+        <div class="card-sub">Monitored grid assets</div>
+      </div>
+      <div class="card card-critical">
+        <div class="card-label">Critical Equipment</div>
+        <div class="card-value" id="card-crit-eq">—</div>
+        <div class="card-sub">Score ≥ 81 — immediate action</div>
+      </div>
+      <div class="card card-high">
+        <div class="card-label">High Equipment Risk</div>
+        <div class="card-value" id="card-high-eq">—</div>
+        <div class="card-sub">Score 61–80</div>
+      </div>
+      <div class="card card-critical">
+        <div class="card-label">Critical Outage Risk</div>
+        <div class="card-value" id="card-crit-out">—</div>
+        <div class="card-sub">Outage model ≥ 81</div>
+      </div>
+      <div class="card card-medium">
+        <div class="card-label">Avg Equipment Score</div>
+        <div class="card-value" id="card-avg">—</div>
+        <div class="card-sub">Portfolio average / 100</div>
+      </div>
+    </div>
+
+    <!-- ── Main two-column layout ─────────────────────────────────────── -->
+    <div class="content-grid">
+
+      <!-- ── Left column ───────────────────────────────────────────────── -->
+      <div class="left-col">
+
+        <!-- Risk distribution -->
+        <div class="panel">
+          <div class="panel-header">Risk Distribution — All 50 Assets</div>
+          <div class="dist-grid">
+
+            <div class="dist-block">
+              <h4>Equipment Failure Risk</h4>
+              <div class="dist-bar-row">
+                <span class="dist-label">CRITICAL</span>
+                <div class="dist-track"><div id="eq-bar-critical" class="dist-fill fill-critical" style="width:0%"></div></div>
+                <span class="dist-count" id="eq-cnt-critical">—</span>
+              </div>
+              <div class="dist-bar-row">
+                <span class="dist-label">HIGH</span>
+                <div class="dist-track"><div id="eq-bar-high" class="dist-fill fill-high" style="width:0%"></div></div>
+                <span class="dist-count" id="eq-cnt-high">—</span>
+              </div>
+              <div class="dist-bar-row">
+                <span class="dist-label">MEDIUM</span>
+                <div class="dist-track"><div id="eq-bar-medium" class="dist-fill fill-medium" style="width:0%"></div></div>
+                <span class="dist-count" id="eq-cnt-medium">—</span>
+              </div>
+              <div class="dist-bar-row">
+                <span class="dist-label">LOW</span>
+                <div class="dist-track"><div id="eq-bar-low" class="dist-fill fill-low" style="width:0%"></div></div>
+                <span class="dist-count" id="eq-cnt-low">—</span>
+              </div>
+            </div>
+
+            <div class="dist-block">
+              <h4>Outage Risk (separate model)</h4>
+              <div class="dist-bar-row">
+                <span class="dist-label">CRITICAL</span>
+                <div class="dist-track"><div id="out-bar-critical" class="dist-fill fill-critical" style="width:0%"></div></div>
+                <span class="dist-count" id="out-cnt-critical">—</span>
+              </div>
+              <div class="dist-bar-row">
+                <span class="dist-label">HIGH</span>
+                <div class="dist-track"><div id="out-bar-high" class="dist-fill fill-high" style="width:0%"></div></div>
+                <span class="dist-count" id="out-cnt-high">—</span>
+              </div>
+              <div class="dist-bar-row">
+                <span class="dist-label">MEDIUM</span>
+                <div class="dist-track"><div id="out-bar-medium" class="dist-fill fill-medium" style="width:0%"></div></div>
+                <span class="dist-count" id="out-cnt-medium">—</span>
+              </div>
+              <div class="dist-bar-row">
+                <span class="dist-label">LOW</span>
+                <div class="dist-track"><div id="out-bar-low" class="dist-fill fill-low" style="width:0%"></div></div>
+                <span class="dist-count" id="out-cnt-low">—</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Top vulnerable assets -->
+        <div class="panel">
+          <div class="panel-header">
+            Top 10 Vulnerable Assets
+            <span style="font-size:11px;color:var(--muted)">Click row to inspect</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Zone</th>
+                  <th>Equipment Risk</th>
+                  <th>Outage Risk</th>
+                </tr>
+              </thead>
+              <tbody id="top-assets-body">
+                <tr><td colspan="4" style="padding:20px;text-align:center;color:var(--muted)">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- end left-col -->
+
+      <!-- ── Right column ──────────────────────────────────────────────── -->
+      <div class="right-col">
+
+        <!-- Outage risk by zone -->
+        <div class="panel">
+          <div class="panel-header">Outage Risk by Zone</div>
+          <div class="zone-list" id="zone-list">
+            <div style="color:var(--muted);font-size:12px;padding:8px 0">Loading…</div>
+          </div>
+        </div>
+
+        <!-- Asset detail -->
+        <div class="panel" id="detail-panel">
+          <div class="panel-header">Asset Detail</div>
+          <div class="detail-body" id="detail-body">
+            <div class="detail-placeholder" id="detail-placeholder">
+              Select an asset from the table to view details.
+            </div>
+          </div>
+        </div>
+
+        <!-- Copilot -->
+        <div class="panel">
+          <div class="panel-header">Grid Operations Copilot</div>
+          <div class="copilot-label" id="copilot-model-label">
+            GridGuard Operations Copilot — rule-based MVP, designed for future IBM AI integration
+          </div>
+          <div class="copilot-messages" id="copilot-messages">
+            <div class="msg msg-bot">Hello! I'm the GridGuard Operations Copilot. Ask me about critical assets, outage risk zones, preventive recommendations, or economic impact estimates.</div>
+          </div>
+          <div class="copilot-input-row">
+            <input id="copilot-input" type="text"
+              placeholder="e.g. Which assets are critical? What should I do about South Grid?" />
+            <button id="copilot-send">Send</button>
+          </div>
+        </div>
+
+      </div><!-- end right-col -->
+
+    </div><!-- end content-grid -->
+  </div><!-- end container -->
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
